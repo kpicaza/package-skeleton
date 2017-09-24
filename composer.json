@@ -17,10 +17,15 @@
         }
     ],
     "require": {
-        "php" : "~5.6|~7.0"
+        "php" : "^7.0"
     },
     "require-dev": {
-        "phpunit/phpunit" : "~4.0||~5.0",
+        "fetzi/phpspec-watcher": "^1.0",
+        "henrikbjorn/phpspec-code-coverage": "^3.0",
+        "memio/spec-gen": "^0.6.1",
+        "phpspec/phpspec": "^3.0",
+        "phpunit/phpunit": "^5.7.21",
+        "phpstan/phpstan": "^0.6.4",
         "squizlabs/php_codesniffer": "^2.3"
     },
     "autoload": {
@@ -34,9 +39,12 @@
         }
     },
     "scripts": {
-        "test": "phpunit",
-        "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests",
-        "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
+        "watch-tests": "phpspec-watcher watch --ansi",
+        "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests --ansi",
+        "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests --ansi",
+        "spec-describe": "phpspec describe --ansi",
+        "spec-run": "phpspec run --format=pretty --ansi",
+        "inspect": "phpstan analyse -l 4 -c phpstan.neon src --ansi"
     },
     "extra": {
         "branch-alias": {
